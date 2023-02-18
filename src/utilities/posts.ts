@@ -9,3 +9,13 @@ export async function getPosts() {
       console.error(err);
     });
 }
+
+export async function getSinglePost(postSlug: string) {
+  return await contentApi.posts
+    .read({
+      slug: postSlug
+    })
+    .catch((err: Error) => {
+      console.error(err);
+    });
+}
