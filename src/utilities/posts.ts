@@ -4,6 +4,7 @@ export async function getPosts() {
   return await contentApi.posts
     .browse({
       limit: "all",
+      include: 'tags, authors'
     })
     .catch((err: Error) => {
       console.error(err);
