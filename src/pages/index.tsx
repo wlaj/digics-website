@@ -2,15 +2,17 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import { getPosts } from "../utilities/posts";
+import { getSettings } from "../utilities/settings";
 import { Post } from "../utilities/types";
 
 type Props = {
   posts: any
+  settings: any
 }
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({posts}: Props) {
+export default function Home({posts, settings}: Props) {
   return (
     <>
       <Head>
@@ -20,6 +22,11 @@ export default function Home({posts}: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex m-10">
+      <ul>
+          {settings.navigation.map((setting: any) => (
+            <li key={setting.url}>{setting.label}</li>
+          ))}
+        </ul>
         <ul>
           {posts.map((post: Post) => (
             <li key={post.id}>{post.title}</li>
@@ -32,6 +39,7 @@ export default function Home({posts}: Props) {
 
 export async function getStaticProps(context: any) {
   const posts = await getPosts();
+  const settings = await getSettings();
 
   if (!posts) {
     return {
@@ -39,7 +47,13 @@ export async function getStaticProps(context: any) {
     };
   }
 
+  if (!settings) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
-    props: { posts },
+    props: { posts, settings },
   };
 }
