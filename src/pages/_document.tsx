@@ -1,4 +1,6 @@
+import Navigation from '@/components/Navigation'
 import { Html, Head, Main, NextScript } from 'next/document'
+import { getSettings } from "../utilities/settings";
 
 export default function Document() {
   return (
