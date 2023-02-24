@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Props = {
   settings: any
@@ -13,7 +14,7 @@ export default function Example({settings, logo}: Props) {
     <Disclosure as="nav" className="">
       {({ open }) => (
         <>
-          <div className="mx-auto w-full px-2 sm:px-6 lg:px-5">
+          <div className="mx-auto w-full px-2 sm:px-6 lg:px-0">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
@@ -28,22 +29,24 @@ export default function Example({settings, logo}: Props) {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
+                  <Link href='/'>
                   <Image
                     className="block h-8 w-auto lg:hidden"
                     width={8}
                     height={8}
                     src={logo}
-                    alt="Your Company"
+                    alt={settings.title}
                   />
                   <Image
                     width={8}
                     height={8}
                     className="hidden h-8 w-auto lg:block"
                     src={logo}
-                    alt="Your Company"
+                    alt={settings.title}
                   />
+                  </Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden sm:ml-6 sm:flex">
                   <div className="flex space-x-4">
                     {settings.navigation.map((item: any) => (
                       <a
