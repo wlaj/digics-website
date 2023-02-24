@@ -5,7 +5,8 @@ import { getPosts } from "../utilities/posts";
 import { getSettings } from "../utilities/settings";
 import { Post } from "../utilities/types";
 import Navigation from "../components/Navigation";
-import BlogList from "@/components/blogList";
+import BlogList from "../components/BlogList";
+import FeaturesList from "../components/FeaturesList";
 
 type Props = {
   posts: any;
@@ -26,14 +27,14 @@ export default function Home({ posts, settings }: Props) {
       <main className="mx-5">
         <Navigation settings={settings} logo={settings.logo} />
         <div>
-          <h1 className=" font-semibold text-8xl max-w-4xl m-5 ">We create, build and host the new era of digital</h1>
+          <h1 className="font-bold text-[250px] max-w-4xl">Digics</h1>
+          <h1 className="ml-2 text-5xl">
+            <span className="font-semibold">We create, build and host the new era of digital.</span> Check
+            out our services below or learn more about what we do.
+          </h1>
         </div>
+        <FeaturesList />
         <BlogList posts={posts} />
-        <ul>
-          {posts.map((post: Post) => (
-            <li key={post.id}>{post.title}</li>
-          ))}
-        </ul>
       </main>
     </>
   );
