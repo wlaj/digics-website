@@ -28,8 +28,8 @@ const FeaturesList = () => {
     <div className="grid mx-3 my-48 grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-8">
         {features.map((feature: any) => (
           <span key={feature.title}>
-            <h4 className="font-semibold text-xl py-2">{feature.title}</h4>
-            <p className="text-neutral-600">
+            <h4 className="font-semibold text-2xl py-2">{feature.title}</h4>
+            <p className="text-neutral-600 text-xl">
               {feature.description}
             </p>
           </span>

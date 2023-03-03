@@ -1,30 +1,31 @@
 import { getSinglePost, getPosts } from "../../utilities/posts";
 import { getSettings } from "../../utilities/settings";
-import MetaTags, { MetaTagsProps} from "../../components/MetaTags";
+import MetaTags from "../../components/MetaTags";
 import Navigation from "../../components/Navigation";
+import styles from "../../styles/Post.module.css";
+import { MetaTagsProps, PostProps, SettingsProps } from "../../utilities/types";
 
-type Props = MetaTagsProps & {
-  post: {
-    title: string;
-    html: string;
-    published_at: string;
-    feature_image: string;
-    feature_image_alt: string;
-  };
-  settings: {
-    logo: HTMLImageElement;
-  };
-};
+type Props = MetaTagsProps & PostProps & SettingsProps;
 
 const PostPage = ({ post, settings }: Props) => {
   return (
     <>
-    <MetaTags data={post}  />
-      <Navigation logo={settings.logo} settings={settings} />
-      <div className="mx-auto w-[60rem]">
+      <MetaTags
+        meta_title={post.title}
+        meta_description={post.meta_description}
+        twitter_title={post.twitter_title}
+        twitter_description={post.twitter_description}
+        twitter_image={post.twitter_image}
+        og_title={post.og_title}
+        og_description={post.og_description}
+        og_image={post.og_image}
+        url={post.url}
+      />
+      <Navigation data={settings} />
+      <div className={styles.postWrapper}>
         <div className="mx-52 my-10">
           <p>{post.published_at}</p>
-          <h1 className="text-5xl font-semibold">{post.title}</h1>
+          <h1>{post.title}</h1>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
