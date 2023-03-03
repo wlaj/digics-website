@@ -1,4 +1,5 @@
 import { getSinglePage, getPages } from "../utilities/pages";
+import PageContentSection from "../components/PageContentSection";
 
 type Props = {
   page: {
@@ -9,10 +10,9 @@ type Props = {
 
 const Page = ({ page }: Props) => {
   return (
-    <div>
-      <h1>{page.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: page.html }} />
-    </div>
+    <>
+      <PageContentSection data={page} />
+    </>
   );
 };
 
