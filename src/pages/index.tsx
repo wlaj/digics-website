@@ -11,6 +11,7 @@ import LogoCloud from "@/components/LogoCloud";
 import SaleBanner from "@/components/SaleBanner";
 import InformationFeature from "@/components/InformationFeature";
 import NewsletterSignup from "@/components/NewsletterSignup";
+import PricingBlock from "@/components/PricingBlock";
 
 type Props = {
   posts: any;
@@ -30,11 +31,12 @@ export default function Home({ posts, settings }: Props) {
       </Head>
       <main>
         {/* <SaleBanner /> */}
-        <Navigation />
+        <Navigation data={settings} />
         <HeaderBlock />
         <LogoCloud />
         <InformationFeature />
         <BlogList />
+        <PricingBlock />
         <NewsletterSignup />
       </main>
     </>
