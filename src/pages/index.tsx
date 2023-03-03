@@ -32,10 +32,10 @@ export default function Home({ posts, settings }: Props) {
       <main>
         {/* <SaleBanner /> */}
         <Navigation data={settings} />
-        <HeaderBlock />
+        <HeaderBlock data={settings} />
         <LogoCloud />
         <InformationFeature />
-        <BlogList />
+        <BlogList data={posts} />
         <PricingBlock />
         <NewsletterSignup />
       </main>
