@@ -27,7 +27,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Navigation({ data }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -35,8 +35,8 @@ export default function Example() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <span className="sr-only">{data.title}</span>
+            <img className="h-8 w-auto" src={data.logo} alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -52,7 +52,7 @@ export default function Example() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+              Services
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             </Popover.Button>
 
@@ -101,20 +101,18 @@ export default function Example() {
             </Transition>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
-          </a>
+          {data.navigation.map((item) => (
+            <a key={item.label} href={item.url} className="text-sm font-semibold leading-6 text-gray-900">
+              {item.label}
+            </a>
+          ))}
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          {data.secondary_navigation.map((item) => (
+            <a key={item.label} href={item.url} className="text-sm font-semibold leading-6 text-gray-900">
+              {item.label} <span aria-hidden="true">&rarr;</span>
+            </a>
+          ))}
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
